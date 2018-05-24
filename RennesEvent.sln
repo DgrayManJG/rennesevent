@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RennesEvent", "RennesEvent\RennesEvent.csproj", "{F3206B1D-B354-4CFA-B963-B2014CD30066}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BO", "BO\BO.csproj", "{379997A2-2E40-455D-84B0-DA14804836DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{A0B5D697-FEA9-4657-B805-053B7DFD1BC2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F3206B1D-B354-4CFA-B963-B2014CD30066}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3206B1D-B354-4CFA-B963-B2014CD30066}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3206B1D-B354-4CFA-B963-B2014CD30066}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3206B1D-B354-4CFA-B963-B2014CD30066}.Release|Any CPU.Build.0 = Release|Any CPU
+		{379997A2-2E40-455D-84B0-DA14804836DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{379997A2-2E40-455D-84B0-DA14804836DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{379997A2-2E40-455D-84B0-DA14804836DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{379997A2-2E40-455D-84B0-DA14804836DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0B5D697-FEA9-4657-B805-053B7DFD1BC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0B5D697-FEA9-4657-B805-053B7DFD1BC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0B5D697-FEA9-4657-B805-053B7DFD1BC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0B5D697-FEA9-4657-B805-053B7DFD1BC2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

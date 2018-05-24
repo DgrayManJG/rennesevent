@@ -1,0 +1,144 @@
+﻿@model BO.Evenement
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div id="page" class="container">
+
+    <h2>Details</h2>
+
+    <div>
+        <h4>Evenement</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Nom)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Nom)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DateDebut)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DateDebut)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DateFin)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DateFin)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Descriptif)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Descriptif)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Place)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Place)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Adresse)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Adresse.Rue)
+                @Html.DisplayFor(model => model.Adresse.Cp)
+                @Html.DisplayFor(model => model.Adresse.Ville)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Images)
+            </dt>
+
+            <div id="page" class="container">
+                <div class="row">
+                    <h3>Images</h3>
+                    <div class="row">
+                        <hr>
+
+                        @foreach (var item in Model.Images)
+                        {
+                            <div class="gallery">
+                                <button type="button" data-toggle="modal" data-target="#myModal">
+                                    <img src="~/Content/images/evenements/@Html.DisplayFor(modelItem => item.Nom)" alt="" width="300" height="200">
+                                </button>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+    
+</div>
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <br />
+    <br />
+    <br />
+    <div class="w3-content w3-display-container">
+        <div class="w3-content w3-display-container">
+
+            @foreach (var item in Model.Images)
+            {
+                <img class="mySlides" src="~/Content/images/evenements/@Html.DisplayFor(modelItem => item.Nom)" alt="" style="width:100%">
+            }
+
+            <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+            <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts {
+    <script type="text/javascript">
+
+        var slideIndex = 1;
+        showDivs(slideIndex);
+
+        function plusDivs(n) {
+            showDivs(slideIndex += n); m
+        }
+
+        function showDivs(n) {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            if (n > x.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = x.length }
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            x[slideIndex - 1].style.display = "block";
+        }
+
+    </script>
+}

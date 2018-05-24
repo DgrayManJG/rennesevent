@@ -1,0 +1,163 @@
+﻿@model RennesEvent.Models.CreateEditEvenementVM
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+<div id="page" class="container">
+
+    <h2>Edit</h2>
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Evenement</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Evenement.Id)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Evenement.Nom, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Evenement.Nom, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Evenement.Nom, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Evenement.DateDebut, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Evenement.DateDebut, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Evenement.DateDebut, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Evenement.DateFin, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Evenement.DateFin, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Evenement.DateFin, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Evenement.Descriptif, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Evenement.Descriptif, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Evenement.Descriptif, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Evenement.Place, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Evenement.Place, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Evenement.Place, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+          <div class="form-group">
+                @Html.LabelFor(model => model.Evenement.Adresse.Rue, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Evenement.Adresse.Rue, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Evenement.Adresse.Rue, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Evenement.Adresse.Cp, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Evenement.Adresse.Cp, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Evenement.Adresse.Cp, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Evenement.Adresse.Ville, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Evenement.Adresse.Ville, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Evenement.Adresse.Ville, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="dropdown">
+                    @Html.LabelFor(model => model.Evenement.Theme, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.IdSelectedTheme, Model.Themes.Select(o => new SelectListItem
+                        {
+                            Text = $"{o.Nom}",
+                            Value = o.Id.ToString(),
+
+                        }), "Selectionnez un thème", new { @class = "form-control", required = "required" })
+                    </div>
+                </div>
+            </div>
+
+            <h2>Images</h2>
+
+            <table class="table">
+                <tr>
+                    <th>
+                        Nom
+                    </th>
+                    <th>
+                        Par défaut
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model.Evenement.Images)
+                {
+                    <tr>
+                        <td class="image-item">
+                            @Html.DisplayFor(modelItem => item.Nom)
+                            <span class="tooltipimage"><img src="~/Content/images/evenements/@Html.DisplayFor(modelItem => item.Nom)" class="img-responsive" alt="" width="200" height="150"></span>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsDefault)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Delete", "Delete", "Image", new { id = item.Id }, null) |
+                        </td>
+                    </tr>
+                }
+
+            </table>
+
+
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+    
+</div> 
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $('.image-item').hover(function () {
+                console.log($(this).text());
+            });
+
+        });
+
+    </script>
+}

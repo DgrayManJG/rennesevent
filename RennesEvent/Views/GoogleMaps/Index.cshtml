@@ -1,0 +1,87 @@
+﻿@model RennesEvent.Models.ParkingEvenementVM
+
+<h2 class="well">Parkings les plus proches de l'évément @Html.DisplayFor(model => model.evenement.Nom)</h2> 
+
+
+<div id="container">
+
+    <div id="destinationForm" class="col-md-12 col-sm-12 col-xs-12 well">
+        <form action="" method="get" name="direction" id="direction">
+            <div class="form-group">
+                <label>Point de départ :</label>
+                <input type="text" name="origin" id="origin" class="form-control" placeholder="Entrez votre adresse de départ">
+            </div>
+            <div class="form-group">
+                <label id="labelDestination">Destination :</label>
+                <input type="text" name="destination" id="destination" class="form-control" value="@Html.DisplayFor(modelItem => modelItem.parkings.ElementAt(0).Adresse)">
+            </div>
+            <input type="button" value="Calculer l'itinéraire" id="btnCalculerItineraire" onclick="javascript:calculate()" class="btn btn-primary">
+        </form>
+    </div>
+
+    <div class="col-md-4 col-sm-4 col-xs-12" style="height: 600px; overflow-y: auto;padding-left: 0">
+
+        @foreach (var item in Model.parkings)
+        {
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h4 class="col-md-12 col-sm-12 col-xs-12"><img src="../../Content/images/parking-icon.png" width="30" /> @Html.DisplayFor(modelItem => item.Nom)</h4>
+                    
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <p>Places libres : @Html.DisplayFor(modelItem => item.PlacesLibres)/@Html.DisplayFor(modelItem => item.PlacesMax)</p>
+                        <p></p>
+                        <p>Adresse:<span class="adresseParking">@Html.DisplayFor(modelItem => item.Adresse)</span></p>
+                        <p>Horaires : @Html.DisplayFor(modelItem => item.TexteHoraires)</p>
+                        <p>Tarifs : @Html.DisplayFor(modelItem => item.TexteTarifs)</p>
+                        <button type="button" class="btn btn-success pull-right btnChoisir">Choisir</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div id="map" class="col-md-8 col-sm-8 col-xs-12" style="height: 600px">
+        <p>Veuillez patienter pendant le chargement de la carte...</p>
+    </div>
+
+    <div id="panel" class="well" hidden></div>
+
+</div>
+
+
+@section scripts {
+    <script type="text/javascript" src="../../Scripts/jquery-ui-1.8.12.custom.min.js"></script>
+    <script type="text/javascript" src="https://maps.google.com/maps/api/js?language=fr&key=AIzaSyALhF417BMAZPVB1jUugfoV13sTgMZwmMI"></script>
+    <script type="text/javascript">
+
+        var latLng = new google.maps.LatLng(@Html.DisplayFor(model => model.coordonneesEvenement));
+        var imageEvenement =
+            "@Html.DisplayFor(modelItem => modelItem.evenement.Images.FirstOrDefault(i => i.IsDefault).Nom)";
+
+        var tabParking1 = [
+            "@Html.DisplayFor(modelItem => modelItem.parkings.ElementAt(0).Coordonnees)",
+            "@Html.DisplayFor(modelItem => modelItem.parkings.ElementAt(0).Nom)"];
+        var tabParking2 = [
+            "@Html.DisplayFor(modelItem => modelItem.parkings.ElementAt(1).Coordonnees)",
+            "@Html.DisplayFor(modelItem => modelItem.parkings.ElementAt(1).Nom)"];
+        var tabParking3 = [
+            "@Html.DisplayFor(modelItem => modelItem.parkings.ElementAt(2).Coordonnees)",
+            "@Html.DisplayFor(modelItem => modelItem.parkings.ElementAt(2).Nom)"];
+
+        var titreEvenement = "@Html.DisplayFor(model => model.evenement.Nom)";
+        
+
+        $(".btnChoisir").click(function () {
+            var adresse = $(this).parent().find(".adresseParking").text();
+            var nomParking = $(this).parent().parent().find("h4").text();
+            $("#destination").val(adresse);
+            $("#btnCalculerItineraire").trigger("click");
+            $("#labelDestination").text("Destination vers parking " + nomParking);
+        });
+
+        $("#labelDestination").text("Destination vers parking "+$(".panel-body:first").find("h4").text());
+    </script>
+    <script type="text/javascript" src="../../Scripts/functions.js"></script>
+}
+
+

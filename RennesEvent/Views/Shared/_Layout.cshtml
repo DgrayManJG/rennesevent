@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mon application ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    <link rel="stylesheet" href="~/Content/font-awesome.css" />
+    <link rel="stylesheet" href="~/Content/Site.css" />
+    <link rel="stylesheet" href="~/Content/w3.css" />
+</head>
+<body>
+
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <img src="~/Content/images/logo.png" alt="event image" class="img-responsive" style="width: 200px; height: 60px;" />
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
+
+                @if (Request.IsAuthenticated && User.IsInRole("Administrateur"))
+                {
+                    <li>@Html.ActionLink("Back office", "Index", "BackOffice")</li>
+                }
+                
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+            @Html.Partial("_LoginPartial")
+        </div><!-- /.navbar-collapse -->
+    </nav>
+
+    <br />
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+    </div>
+
+        
+        @RenderSection("scripts", required: false)
+</body>
+
+<footer id="page">
+    <h2>Oú nous trouver ?</h2>
+    <br />
+    <div class="row">
+        <div class="col-md-6">
+            <iframe width="500" height="230" frameborder="0" style="border:0"
+                    src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJFdLZ9CcgD0gRi3F9IY5RgkU&key=AIzaSyAHnLHH3iAoVKJyvx5zrKBozT_k-_9zEGk" allowfullscreen></iframe>
+        </div>
+        <div class="col-md-3">
+            <address>
+                <strong>Adresse</strong><br>
+                ENI École Informatique Rennes<br>
+                ZAC de La Conterie<br>
+                8 Rue Léo Lagrange<br>
+                35131 Chartres-de-Bretagne<br>
+                France<br>
+                <abbr title="Phone">Tél:</abbr> 0680808080
+            </address>
+        </div>
+        <div class="col-md-3 col-centered">
+            <img src="~/Content/images/eni-informatique.jpg" class="img-responsive" alt="" width="180" height="120">
+        </div>
+    </div>
+</footer>
+
+<!-- Start of Async Drift Code -->
+<script>
+    "use strict";
+
+    !function() {
+      var t = window.driftt = window.drift = window.driftt || [];
+      if (!t.init) {
+        if (t.invoked) return void (window.console && console.error && console.error("Drift snippet included twice."));
+        t.invoked = !0, t.methods = [ "identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on" ],
+        t.factory = function(e) {
+          return function() {
+            var n = Array.prototype.slice.call(arguments);
+            return n.unshift(e), t.push(n), t;
+          };
+        }, t.methods.forEach(function(e) {
+          t[e] = t.factory(e);
+        }), t.load = function(t) {
+          var e = 3e5, n = Math.ceil(new Date() / e) * e, o = document.createElement("script");
+          o.type = "text/javascript", o.async = !0, o.crossorigin = "anonymous", o.src = "https://js.driftt.com/include/" + n + "/" + t + ".js";
+          var i = document.getElementsByTagName("script")[0];
+          i.parentNode.insertBefore(o, i);
+        };
+      }
+    }();
+    drift.SNIPPET_VERSION = '0.3.1';
+    drift.load('umzpzhhvg6xs');
+</script>
+<!-- End of Async Drift Code -->
+
+</html>

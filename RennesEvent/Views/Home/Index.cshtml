@@ -1,0 +1,87 @@
+﻿@model IEnumerable<RennesEvent.Models.CreateEditEvenementVM>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+
+<div id="page" class="container">
+    <div class="row">
+        <div class="col-md-2">
+         </div>
+        <div class="col-md-6">
+            <h2>Rechercher un évenement.</h2>
+            <h5>Vous pouvez rechercher par titre, date, ville.</h5>
+            <div id="custom-search-input">
+                <div class="input-group col-md-12">
+                    <input type="text" class="form-control input-lg" id="search" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-info btn-lg" type="button">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <br />
+        </div>
+        <div class="col-md-4">
+        </div>
+    </div>
+</div>
+
+<br />
+<br />
+
+<div class="container">
+    <div class="row-fluid">
+        <div id="myList">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4 col-sm-4" id="element">
+                    <div class="panel panel-default">
+                        <div class="panel-body nopadding">
+                            <img src="~/Content/images/evenements/@Html.DisplayFor(modelItem => item.defaultImage.Nom)" alt="event image" class="img-responsive" style="width: 300px; height: 170px;" />
+                            <div class="row nopadding">
+                                <div class="col-sm-6 nopadding">
+                                    <time class="start green">
+                                        <span class="month">Start</span>
+                                        <span class="day"><h3>@Html.DisplayFor(modelItem => item.Evenement.DateDebut)</h3></span>
+                                    </time>
+                                </div>
+                                <div class="col-sm-6 nopadding">
+                                    <time class="end orange_red">
+                                        <span class="month">End</span>
+                                        <span class="day"><h3>@Html.DisplayFor(modelItem => item.Evenement.DateFin)</h3></span>
+                                    </time>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <p>
+                                @Html.ActionLink(item.Evenement.Nom, "Evenement", "Home", new { id = item.Evenement.Id }, null) 
+                            </p>
+                            <p>
+                                @Html.DisplayFor(modelItem => item.Evenement.Adresse.Ville)
+                            </p>
+                            @Html.ActionLink("Lire plus..", "Evenement", "Home", new { id = item.Evenement.Id }, null)
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section scripts {
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#search").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myList div#element").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
+}

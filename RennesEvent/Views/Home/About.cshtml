@@ -1,0 +1,22 @@
+﻿@model IEnumerable<BO.Parking>
+
+
+<h2>Liste des parkings</h2>
+
+            
+@foreach (var item in Model)  {
+          
+    <div>
+        <h4 class="well">@Html.DisplayFor(modelItem => item.Nom)</h4>
+        <p>Id : @Html.DisplayFor(modelItem => item.Identifiant)</p>
+        <p>Statut : @Html.DisplayFor(modelItem => item.Statut)</p>
+        <p>Places totales : @Html.DisplayFor(modelItem => item.PlacesMax)</p>
+        <p>Places libres : @Html.DisplayFor(modelItem => item.PlacesLibres)</p>
+        <p>Coordonnées : @Html.DisplayFor(modelItem => item.Coordonnees)</p>
+        <p>Adresse : @Html.DisplayFor(modelItem => item.Adresse)</p>
+        <p>Horaires : @Html.DisplayFor(modelItem => item.TexteHoraires)</p>
+        <p>Tarifs : @Html.DisplayFor(modelItem => item.TexteTarifs)</p>
+    </div>
+        
+}
+

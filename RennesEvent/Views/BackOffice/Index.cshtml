@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "back-office";
+}
+
+<link rel="stylesheet" href="~/Content/sb-admin.css" />
+
+<div id="page" class="container">
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-6">
+            <h2>Bienvenue sur le back-office !</h2>
+            <br />
+        </div>
+        <div class="col-md-4">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-3 col-md-6 col-sm-3">
+        <div class="card">
+            <h3>Evenements</h3>
+            <li>@Html.ActionLink("Liste évenement", "Index", "Evenements")</li>
+            <li>@Html.ActionLink("Création évenement", "Create", "Evenements")</li>
+        </div>
+    </div>
+    <div class="col-xs-3 col-md-6 col-sm-3">
+        <div class="card text-white bg-warning o-hidden h-100">
+            <h3>Themes</h3>
+            <li>@Html.ActionLink("Liste des themes", "Index", "Themes")</li>
+            <li>@Html.ActionLink("Création theme", "Create", "Themes")</li>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-3 col-md-6 col-sm-3">
+        <div class="card text-white bg-success o-hidden h-100">
+            <h3>Images</h3>
+            <li>@Html.ActionLink("Liste des images", "Index", "Images")</li>
+            <li>@Html.ActionLink("Création image", "Create", "Images")</li>
+        </div>
+    </div>
+</div>
+<br />
